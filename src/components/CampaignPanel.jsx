@@ -2,6 +2,7 @@ export default function CampaignPanel({
   selectedCount,
   onOpen,
   onSelectAll,
+  onSelectAllGlobal,
   onClearSelection,
   className = '',
 }) {
@@ -28,6 +29,9 @@ export default function CampaignPanel({
       <div className="campaign-actions">
         <button className="button button-secondary" type="button" onClick={onSelectAll}>
           Seleccionar todos
+        </button>
+        <button className="button button-secondary" type="button" onClick={onSelectAllGlobal}>
+          Seleccionar TODOS (global)
         </button>
         <button className="button button-secondary" type="button" onClick={onClearSelection}>
           Limpiar selección

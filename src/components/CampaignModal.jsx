@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { openGmailLead } from '../lib/gmail';
 import { copyInstagramMessage, getInstagramUrl, openInstagramProfile } from '../lib/instagram';
+import { buildLeadContactId } from '../lib/leads';
 import { fillWhatsAppTemplate, getWhatsAppReadyLeads, openWhatsAppLead } from '../lib/whatsapp';
 
 const CHANNELS = ['whatsapp', 'instagram', 'gmail'];
@@ -18,6 +19,8 @@ export default function CampaignModal({
   onPreviewLeadChange,
   onToggleLeadSelection,
   leadInteractions,
+  contactedLeadIds,
+  onMarkContacted,
   onRegisterInteraction,
 }) {
   const [copiedLeadId, setCopiedLeadId] = useState('');
@@ -120,7 +123,11 @@ export default function CampaignModal({
       const nextStatuses = {};
 
       leadsWithMeta.forEach((lead) => {
-        if (currentStatuses[lead.id] === 'contactado' || lead.interaction?.last_contacted) {
+        if (
+          currentStatuses[lead.id] === 'contactado' ||
+          contactedLeadIds.has(buildLeadContactId(lead)) ||
+          lead.interaction?.last_contacted
+        ) {
           nextStatuses[lead.id] = 'contactado';
           return;
         }
@@ -130,7 +137,7 @@ export default function CampaignModal({
 
       return nextStatuses;
     });
-  }, [isOpen, leadsWithMeta]);
+  }, [contactedLeadIds, isOpen, leadsWithMeta]);
 
   useEffect(() => {
     if (!isOpen || !previewLead) {
@@ -233,7 +240,13 @@ export default function CampaignModal({
     }));
   }
 
-  function markLeadAsContacted(leadId, channel) {
+  async function markLeadAsContacted(lead, channel) {
+    if (!lead) {
+      return;
+    }
+
+    await onMarkContacted(lead, channel);
+    const leadId = lead.id;
     onRegisterInteraction(leadId, channel);
     setLeadStatuses((currentStatuses) => ({
       ...currentStatuses,
@@ -501,15 +514,21 @@ export default function CampaignModal({
                   <button
                     className="button button-secondary campaign-preview-panel__done"
                     type="button"
-                    onClick={() => markLeadAsContacted(previewLeadMeta.id, 'manual')}
+                    onClick={() => {
+                      void markLeadAsContacted(previewLeadMeta, 'manual');
+                    }}
                   >
-                    Listo
+                    Contactado
                   </button>
                   {getContactActions(previewLeadMeta, copiedLeadId === previewLeadMeta.id).map((action) => (
                     <button
                       key={action.key}
                       className={action.buttonClassName}
                       type="button"
+                      disabled={
+                        isLeadContacted(previewLeadMeta, leadStatuses) &&
+                        (action.channel === 'whatsapp' || action.channel === 'instagram')
+                      }
                       onClick={() => {
                         if (action.channel === 'copy') {
                           void handleCopyOnly(previewLeadMeta);
@@ -635,6 +654,10 @@ export default function CampaignModal({
                           key={action.key}
                           className={action.buttonClassName}
                           type="button"
+                          disabled={
+                            isLeadContacted(lead, leadStatuses) &&
+                            (action.channel === 'whatsapp' || action.channel === 'instagram')
+                          }
                           onClick={(event) => {
                             event.stopPropagation();
                             if (action.channel === 'copy') {
@@ -647,6 +670,17 @@ export default function CampaignModal({
                           {action.shortLabel}
                         </button>
                       ))}
+
+                      <button
+                        className="button button-secondary"
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          void markLeadAsContacted(lead, 'manual');
+                        }}
+                      >
+                        Contactado
+                      </button>
 
                       {!rapidMode ? (
                         <button

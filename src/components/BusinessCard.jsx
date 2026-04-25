@@ -2,10 +2,10 @@ function formatRating(rating, ratingLabel) {
   return rating > 0 ? rating.toFixed(1) : ratingLabel;
 }
 
-export default function BusinessCard({ business, selected, onToggleSelect }) {
+export default function BusinessCard({ business, selected, onToggleSelect, isContacted }) {
   return (
     <article
-      className={`panel business-card ${selected ? 'business-card--selected' : ''}`}
+      className={`panel business-card ${selected ? 'business-card--selected' : ''} ${isContacted ? 'business-card--contacted' : ''}`}
       onClick={() => onToggleSelect(business)}
     >
       <div className="business-card__top">
@@ -29,7 +29,10 @@ export default function BusinessCard({ business, selected, onToggleSelect }) {
             <h3>{business.nombre}</h3>
           </div>
         </div>
-        <span className="rating-badge">{formatRating(business.rating, business.ratingLabel)}</span>
+        <div className="business-card__badges">
+          {isContacted ? <span className="business-contacted-badge">CONTACTADO</span> : null}
+          <span className="rating-badge">{formatRating(business.rating, business.ratingLabel)}</span>
+        </div>
       </div>
 
       <p className="business-address">{business.direccion}</p>

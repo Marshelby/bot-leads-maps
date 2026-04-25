@@ -9,9 +9,11 @@ export default function FilterBar({
   query,
   minRating,
   sortOrder,
+  hideContacted,
   onQueryChange,
   onMinRatingChange,
   onSortChange,
+  onHideContactedChange,
 }) {
   return (
     <section className="panel filter-bar">
@@ -47,6 +49,18 @@ export default function FilterBar({
           <option value="rating-desc">Mayor a menor</option>
           <option value="rating-asc">Menor a mayor</option>
         </select>
+      </div>
+
+      <div className="field field-toggle">
+        <label className="filter-toggle" htmlFor="hide-contacted">
+          <input
+            id="hide-contacted"
+            type="checkbox"
+            checked={hideContacted}
+            onChange={(event) => onHideContactedChange(event.target.checked)}
+          />
+          <span>Ocultar contactados</span>
+        </label>
       </div>
     </section>
   );

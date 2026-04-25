@@ -4,6 +4,8 @@ import CampaignModal from '../components/CampaignModal';
 import CampaignPanel from '../components/CampaignPanel';
 import FilterBar from '../components/FilterBar';
 import InternalNav from '../components/InternalNav';
+import { buildLeadContactId, ensureLeadId } from '../lib/leads';
+import { supabase } from '../lib/supabase';
 import { filterBusinesses, flattenBusinesses } from '../lib/data';
 
 function buildRegionFileName(region) {
@@ -19,6 +21,9 @@ export default function DirectoryPage() {
   const [allBusinesses, setAllBusinesses] = useState([]);
   const [status, setStatus] = useState('loading');
   const [configStatus, setConfigStatus] = useState('loading');
+  const [contactedStatus, setContactedStatus] = useState('idle');
+  const [contactedLeadIds, setContactedLeadIds] = useState(new Set());
+  const [hideContacted, setHideContacted] = useState(false);
   const [query, setQuery] = useState('');
   const [city, setCity] = useState('');
   const [minRating, setMinRating] = useState(0);
@@ -42,6 +47,41 @@ export default function DirectoryPage() {
     'Asunto: Idea para aumentar clientes en [CIUDAD]\n\nHola [NOMBRE],\n\nEstuve revisando tu negocio y veo una oportunidad interesante para ayudarte a captar más clientes en [CIUDAD].\n\nSi te interesa, puedo explicarte brevemente cómo funcionaría.\n\nQuedo atento,',
   );
   const [previewLeadId, setPreviewLeadId] = useState('');
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadContactedLeads() {
+      if (!supabase) {
+        setContactedStatus('ready');
+        return;
+      }
+
+      try {
+        const { data, error } = await supabase.from('leads_contactados').select('id');
+        if (error) {
+          throw error;
+        }
+
+        if (!cancelled) {
+          setContactedLeadIds(new Set((data || []).map((item) => item.id).filter(Boolean)));
+          setContactedStatus('ready');
+        }
+      } catch (error) {
+        console.error('Error cargando leads contactados:', error);
+        if (!cancelled) {
+          setContactedLeadIds(new Set());
+          setContactedStatus('error');
+        }
+      }
+    }
+
+    loadContactedLeads();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     async function loadData() {
@@ -143,9 +183,17 @@ export default function DirectoryPage() {
     };
   }, [region]);
 
+  const visibleBusinesses = useMemo(
+    () =>
+      hideContacted
+        ? allBusinesses.filter((business) => !contactedLeadIds.has(buildLeadContactId(business)))
+        : allBusinesses,
+    [allBusinesses, contactedLeadIds, hideContacted],
+  );
+
   const filteredBusinesses = useMemo(
     () =>
-      filterBusinesses(allBusinesses, {
+      filterBusinesses(visibleBusinesses, {
         query,
         city,
         region,
@@ -153,7 +201,7 @@ export default function DirectoryPage() {
         minRating,
         sortOrder,
       }),
-    [allBusinesses, city, minRating, niche, query, region, sortOrder],
+    [city, minRating, niche, query, region, sortOrder, visibleBusinesses],
   );
 
   const selectedLeadIds = useMemo(() => new Set(selectedLeads.map((lead) => lead.id)), [selectedLeads]);
@@ -196,6 +244,32 @@ export default function DirectoryPage() {
     setMessageGmail(value);
   }
 
+  async function markLeadAsContacted(lead) {
+    const contactId = buildLeadContactId(lead);
+
+    if (supabase) {
+      const { error } = await supabase.from('leads_contactados').upsert(
+        {
+          id: contactId,
+          nombre: String(lead?.nombre || '').trim(),
+          direccion: String(lead?.direccion || '').trim(),
+          telefono: String(lead?.telefono || '').trim(),
+        },
+        { onConflict: 'id' },
+      );
+
+      if (error) {
+        throw error;
+      }
+    }
+
+    setContactedLeadIds((currentIds) => {
+      const nextIds = new Set(currentIds);
+      nextIds.add(contactId);
+      return nextIds;
+    });
+  }
+
   function toggleLeadSelection(business) {
     setSelectedLeads((currentLeads) => {
       const alreadySelected = currentLeads.some((lead) => lead.id === business.id);
@@ -233,6 +307,15 @@ export default function DirectoryPage() {
 
       return nextLeads;
     });
+  }
+
+  function selectAllGlobal() {
+    const nextLeads = allBusinesses.map(ensureLeadId);
+    setSelectedLeads(nextLeads);
+
+    if (nextLeads[0]) {
+      setPreviewLeadId((currentId) => currentId || nextLeads[0].id);
+    }
   }
 
   function clearVisibleSelection() {
@@ -380,21 +463,25 @@ export default function DirectoryPage() {
           selectedCount={selectedLeads.length}
           onOpen={openCampaign}
           onSelectAll={selectAllVisible}
+          onSelectAllGlobal={selectAllGlobal}
           onClearSelection={clearVisibleSelection}
         />
       </section>
 
       <FilterBar
         query={query}
+        hideContacted={hideContacted}
         minRating={minRating}
         sortOrder={sortOrder}
         onQueryChange={setQuery}
+        onHideContactedChange={setHideContacted}
         onMinRatingChange={setMinRating}
         onSortChange={setSortOrder}
       />
 
       <BusinessGrid
         businesses={filteredBusinesses}
+        contactedLeadIds={contactedLeadIds}
         selectedLeadIds={selectedLeadIds}
         onToggleSelect={toggleLeadSelection}
       />
@@ -408,6 +495,8 @@ export default function DirectoryPage() {
         campaignDraft={campaignDraft}
         onClose={closeCampaign}
         onChannelChange={setActiveChannel}
+        contactedLeadIds={contactedLeadIds}
+        onMarkContacted={markLeadAsContacted}
         onMessageChange={updateChannelMessage}
         onPreviewLeadChange={setPreviewLeadId}
         onToggleLeadSelection={toggleLeadSelection}

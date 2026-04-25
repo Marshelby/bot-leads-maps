@@ -1,9 +1,11 @@
 import BusinessCard from './BusinessCard';
+import { buildLeadContactId } from '../lib/leads';
 import { groupBusinessesByQuality } from '../lib/data';
 
 export default function BusinessGrid({
   businesses,
   selectedLeadIds,
+  contactedLeadIds,
   onToggleSelect,
 }) {
   if (businesses.length === 0) {
@@ -32,6 +34,7 @@ export default function BusinessGrid({
                 key={business.id}
                 business={business}
                 selected={selectedLeadIds.has(business.id)}
+                isContacted={contactedLeadIds.has(buildLeadContactId(business))}
                 onToggleSelect={onToggleSelect}
               />
             ))}
