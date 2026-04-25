@@ -34,6 +34,9 @@ venv/
 
 data/
 *.json
+!package.json
+!package-lock.json
+!vercel.json
 
 # ⚠️ opcional (si quieres mantener config sí o sí, comenta esto)
 
