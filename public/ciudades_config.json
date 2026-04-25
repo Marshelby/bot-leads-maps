@@ -1,0 +1,103 @@
+{
+  "Arica y Parinacota": [
+    "Arica",
+    "Putre"
+  ],
+  "Tarapacá": [
+    "Iquique",
+    "Alto Hospicio"
+  ],
+  "Antofagasta": [
+    "Antofagasta",
+    "Calama",
+    "Tocopilla"
+  ],
+  "Atacama": [
+    "Copiapó",
+    "Vallenar",
+    "Caldera"
+  ],
+  "Coquimbo": [
+    "La Serena",
+    "Coquimbo",
+    "Ovalle",
+    "Illapel"
+  ],
+  "Valparaíso": [
+    "Valparaíso",
+    "Viña del Mar",
+    "Quilpué",
+    "Villa Alemana",
+    "Concón",
+    "Quillota",
+    "La Calera",
+    "Limache",
+    "San Antonio",
+    "Los Andes",
+    "San Felipe"
+  ],
+  "Región Metropolitana": [
+    "Santiago",
+    "Providencia",
+    "Las Condes",
+    "Ñuñoa",
+    "Maipú",
+    "Puente Alto",
+    "La Florida",
+    "San Bernardo",
+    "Recoleta",
+    "Independencia"
+  ],
+  "O'Higgins": [
+    "Rancagua",
+    "Machalí",
+    "San Fernando",
+    "Santa Cruz"
+  ],
+  "Maule": [
+    "Talca",
+    "Curicó",
+    "Linares",
+    "Constitución"
+  ],
+  "Ñuble": [
+    "Chillán",
+    "San Carlos",
+    "Bulnes"
+  ],
+  "Biobío": [
+    "Concepción",
+    "Talcahuano",
+    "San Pedro de la Paz",
+    "Chiguayante",
+    "Hualpén",
+    "Coronel",
+    "Lota",
+    "Los Ángeles"
+  ],
+  "La Araucanía": [
+    "Temuco",
+    "Padre Las Casas",
+    "Villarrica",
+    "Angol"
+  ],
+  "Los Ríos": [
+    "Valdivia",
+    "La Unión",
+    "Río Bueno"
+  ],
+  "Los Lagos": [
+    "Puerto Montt",
+    "Puerto Varas",
+    "Osorno",
+    "Castro"
+  ],
+  "Aysén": [
+    "Coyhaique",
+    "Puerto Aysén"
+  ],
+  "Magallanes": [
+    "Punta Arenas",
+    "Puerto Natales"
+  ]
+}
