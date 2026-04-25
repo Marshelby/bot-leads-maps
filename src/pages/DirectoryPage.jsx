@@ -6,6 +6,15 @@ import FilterBar from '../components/FilterBar';
 import InternalNav from '../components/InternalNav';
 import { filterBusinesses, flattenBusinesses } from '../lib/data';
 
+function buildRegionFileName(region) {
+  return region
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '')
+    .toLowerCase();
+}
+
 export default function DirectoryPage() {
   const [allBusinesses, setAllBusinesses] = useState([]);
   const [status, setStatus] = useState('loading');
@@ -14,7 +23,7 @@ export default function DirectoryPage() {
   const [city, setCity] = useState('');
   const [minRating, setMinRating] = useState(0);
   const [sortOrder, setSortOrder] = useState('rating-desc');
-  const [region, setRegion] = useState('');
+  const [region, setRegion] = useState('Valparaíso');
   const [niche, setNiche] = useState('');
   const [regiones, setRegiones] = useState([]);
   const [ciudades, setCiudades] = useState([]);
@@ -37,7 +46,8 @@ export default function DirectoryPage() {
   useEffect(() => {
     async function loadData() {
       try {
-        const response = await fetch('/datos_procesados.json');
+        const regionFileName = buildRegionFileName(region || 'Valparaíso');
+        const response = await fetch(`/regiones/${regionFileName}.json`);
         const data = await response.json();
         setAllBusinesses(flattenBusinesses(data));
         setStatus('ready');
@@ -48,7 +58,7 @@ export default function DirectoryPage() {
     }
 
     loadData();
-  }, []);
+  }, [region]);
 
   useEffect(() => {
     let cancelled = false;
