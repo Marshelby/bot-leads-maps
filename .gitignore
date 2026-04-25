@@ -1,70 +1,15 @@
 # =====================
-
-# NODE / FRONTEND
-
-# =====================
-
-node_modules/
-dist/
-.vite/
-
-# logs
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# =====================
-
-# PYTHON / BACKEND
-
-# =====================
-
-venv/
-**pycache**/
-*.pyc
-*.pyo
-*.pyd
-
-# =====================
-
 # SCRAPER / DATA
-
 # =====================
 
 data/
+
+# ❌ bloquea todo (esto está mal)
+# *.json
+
+# ✅ permitir json en public
 *.json
+!public/**/*.json
 !package.json
 !package-lock.json
 !vercel.json
-
-# ⚠️ opcional (si quieres mantener config sí o sí, comenta esto)
-
-# config/*.json
-
-# =====================
-
-# OS / SISTEMA
-
-# =====================
-
-.DS_Store
-Thumbs.db
-
-# =====================
-
-# CODEX / TEMP
-
-# =====================
-
-.codex
-
-# =====================
-
-# ENV (por si agregas después)
-
-# =====================
-
-.env
-.env.local
-.env.*.local
