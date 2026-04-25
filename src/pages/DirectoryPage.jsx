@@ -66,8 +66,8 @@ export default function DirectoryPage() {
     async function loadConfig() {
       try {
         const [regionesResponse, nichosResponse] = await Promise.all([
-          fetch('/api/config/regiones'),
-          fetch('/api/config/nichos'),
+          fetch('/regiones_config.json'),
+          fetch('/nichos_config.json'),
         ]);
 
         if (!regionesResponse.ok || !nichosResponse.ok) {
@@ -80,8 +80,8 @@ export default function DirectoryPage() {
         ]);
 
         if (!cancelled) {
-          const nextRegiones = Array.isArray(regionesData.regiones) ? regionesData.regiones : [];
-          const nextNichos = Array.isArray(nichosData.nichos) ? nichosData.nichos : [];
+          const nextRegiones = Array.isArray(regionesData) ? regionesData : [];
+          const nextNichos = Array.isArray(nichosData) ? nichosData : [];
 
           setRegiones(nextRegiones);
           setNichos(nextNichos);
@@ -116,14 +116,14 @@ export default function DirectoryPage() {
       }
 
       try {
-        const response = await fetch(`/api/config/ciudades?region=${encodeURIComponent(region)}`);
+        const response = await fetch('/ciudades_config.json');
         if (!response.ok) {
           throw new Error('No se pudieron cargar las ciudades');
         }
 
         const data = await response.json();
         if (!cancelled) {
-          const nextCities = Array.isArray(data.ciudades) ? data.ciudades : [];
+          const nextCities = Array.isArray(data?.[region]) ? data[region] : [];
           setCiudades(nextCities);
           setCity((currentCity) => (nextCities.includes(currentCity) ? currentCity : ''));
         }

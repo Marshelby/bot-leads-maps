@@ -50,14 +50,14 @@ export default function ScraperControl() {
 
     async function loadNichos() {
       try {
-        const response = await fetch('/api/config/nichos');
+        const response = await fetch('/nichos_config.json');
         if (!response.ok) {
           throw new Error('No se pudieron cargar los nichos');
         }
 
         const data = await response.json();
         if (!cancelled) {
-          const nextNichos = Array.isArray(data.nichos) ? data.nichos : [];
+          const nextNichos = Array.isArray(data) ? data : [];
           setNichos(nextNichos);
           setNicho((currentNiche) => (nextNichos.includes(currentNiche) ? currentNiche : nextNichos[0] || ''));
         }
@@ -71,14 +71,14 @@ export default function ScraperControl() {
 
     async function loadRegiones() {
       try {
-        const response = await fetch('/api/config/regiones');
+        const response = await fetch('/regiones_config.json');
         if (!response.ok) {
           throw new Error('No se pudieron cargar las regiones');
         }
 
         const data = await response.json();
         if (!cancelled) {
-          setRegiones(Array.isArray(data.regiones) ? data.regiones : []);
+          setRegiones(Array.isArray(data) ? data : []);
         }
       } catch (error) {
         if (!cancelled) {
@@ -106,14 +106,14 @@ export default function ScraperControl() {
       }
 
       try {
-        const response = await fetch(`/api/config/ciudades?region=${encodeURIComponent(region)}`);
+        const response = await fetch('/ciudades_config.json');
         if (!response.ok) {
           throw new Error('No se pudieron cargar las ciudades');
         }
 
         const data = await response.json();
         if (!cancelled) {
-          const nextCities = Array.isArray(data.ciudades) ? data.ciudades : [];
+          const nextCities = Array.isArray(data?.[region]) ? data[region] : [];
           setCiudades(nextCities);
           setCiudad((currentCity) => (nextCities.includes(currentCity) ? currentCity : ''));
         }
