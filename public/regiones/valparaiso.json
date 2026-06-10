@@ -721,6 +721,19 @@
         "url_maps": "https://www.google.com/maps/place/Peluqueria+%26+Barber%C3%ADa+Clasica+Laura+Rubio+local+9/data=!4m7!3m6!1s0x968805d5d763aa8d:0x5a53ad66db15d746!8m2!3d-32.8330351!4d-70.5998733!16s%2Fg%2F11wjhxwqc5!19sChIJjapj19UFiJYRRtcV22atU1o?authuser=0&hl=es-419&rclk=1"
       },
       {
+        "nombre": "Google Maps",
+        "direccion": "Av. Valparaiso 818, Segundo Piso Local, D2, 6500000 Valparaíso, Villa Alemana",
+        "ciudad": "Valparaíso",
+        "region": "Valparaíso",
+        "telefono": "",
+        "instagram": null,
+        "email": null,
+        "web": "http://www.barberiastrongers.cl/",
+        "rating": "4.8",
+        "google_maps_url": "https://www.google.com/maps/place/Barberia+Strongers/@-33.0441868,-71.375518,17z/data=!3m1!4b1!4m6!3m5!1s0x9689d7429b54de63:0xc2b01c2cca4ac19!8m2!3d-33.0441868!4d-71.375518!16s%2Fg%2F11rqgw183d?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNi4wIKXMDSoASAFQAw%3D%3D",
+        "url_maps": "https://www.google.com/maps/place/Barberia+Strongers/@-33.0441868,-71.375518,17z/data=!3m1!4b1!4m6!3m5!1s0x9689d7429b54de63:0xc2b01c2cca4ac19!8m2!3d-33.0441868!4d-71.375518!16s%2Fg%2F11rqgw183d?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNi4wIKXMDSoASAFQAw%3D%3D"
+      },
+      {
         "nombre": "AMA TU PELO by Pauly PELUQUERÍA",
         "direccion": "2430000 Quilpué, Valparaíso",
         "ciudad": "Valparaíso",
@@ -1862,6 +1875,21 @@
         "rating": "5.0",
         "google_maps_url": "https://www.google.com/maps/place/Kingsman+Barber+Club/@-33.0496069,-71.3934622,17z/data=!3m1!4b1!4m6!3m5!1s0x9689d9ce0da0acb9:0x15eb42dbf68e9be9!8m2!3d-33.0496069!4d-71.3934622!16s%2Fg%2F11fk53npx9?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D",
         "url_maps": "https://www.google.com/maps/place/Kingsman+Barber+Club/@-33.0496069,-71.3934622,17z/data=!3m1!4b1!4m6!3m5!1s0x9689d9ce0da0acb9:0x15eb42dbf68e9be9!8m2!3d-33.0496069!4d-71.3934622!16s%2Fg%2F11fk53npx9?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D"
+      }
+    ],
+    "Lampa": [
+      {
+        "nombre": "Le Bigoton Barberia",
+        "direccion": "Sta. Teresita de Los Andes 382, 9391094 Lampa, Región Metropolitana",
+        "ciudad": "Lampa",
+        "region": "Valparaíso",
+        "telefono": "9 3711 6194",
+        "instagram": null,
+        "email": null,
+        "web": "https://www.facebook.com/lebigoton",
+        "rating": "4.7",
+        "google_maps_url": "https://www.google.com/maps/place/Le+Bigoton+Barberia/data=!4m7!3m6!1s0x9662bf39f160861f:0xa5cb628b7e74c86b!8m2!3d-33.3276437!4d-70.7467696!16s%2Fg%2F11fs090khj!19sChIJH4Zg8Tm_YpYRa8h0fotiy6U?authuser=0&hl=es-419&rclk=1",
+        "url_maps": "https://www.google.com/maps/place/Le+Bigoton+Barberia/data=!4m7!3m6!1s0x9662bf39f160861f:0xa5cb628b7e74c86b!8m2!3d-33.3276437!4d-70.7467696!16s%2Fg%2F11fs090khj!19sChIJH4Zg8Tm_YpYRa8h0fotiy6U?authuser=0&hl=es-419&rclk=1"
       }
     ],
     "Los Andes": [
@@ -4387,40 +4415,6 @@
         "rating": "",
         "google_maps_url": "https://www.google.com/maps/place/Giovanni+barber/@-33.0467299,-71.61597,17z/data=!3m1!4b1!4m6!3m5!1s0x9689e1ce2873d7e1:0x44e7716814601b12!8m2!3d-33.0467299!4d-71.61597!16s%2Fg%2F11yzn4zphc?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D",
         "url_maps": "https://www.google.com/maps/place/Giovanni+barber/@-33.0467299,-71.61597,17z/data=!3m1!4b1!4m6!3m5!1s0x9689e1ce2873d7e1:0x44e7716814601b12!8m2!3d-33.0467299!4d-71.61597!16s%2Fg%2F11yzn4zphc?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNS4wIKXMDSoASAFQAw%3D%3D"
-      }
-    ]
-  },
-  "Región Metropolitana": {
-    "Lampa": [
-      {
-        "nombre": "Le Bigoton Barberia",
-        "direccion": "Sta. Teresita de Los Andes 382, 9391094 Lampa, Región Metropolitana",
-        "ciudad": "Lampa",
-        "region": "Región Metropolitana",
-        "telefono": "9 3711 6194",
-        "instagram": null,
-        "email": null,
-        "web": "https://www.facebook.com/lebigoton",
-        "rating": "4.7",
-        "google_maps_url": "https://www.google.com/maps/place/Le+Bigoton+Barberia/data=!4m7!3m6!1s0x9662bf39f160861f:0xa5cb628b7e74c86b!8m2!3d-33.3276437!4d-70.7467696!16s%2Fg%2F11fs090khj!19sChIJH4Zg8Tm_YpYRa8h0fotiy6U?authuser=0&hl=es-419&rclk=1",
-        "url_maps": "https://www.google.com/maps/place/Le+Bigoton+Barberia/data=!4m7!3m6!1s0x9662bf39f160861f:0xa5cb628b7e74c86b!8m2!3d-33.3276437!4d-70.7467696!16s%2Fg%2F11fs090khj!19sChIJH4Zg8Tm_YpYRa8h0fotiy6U?authuser=0&hl=es-419&rclk=1"
-      }
-    ]
-  },
-  "Villa Alemana": {
-    "Valparaíso": [
-      {
-        "nombre": "Google Maps",
-        "direccion": "Av. Valparaiso 818, Segundo Piso Local, D2, 6500000 Valparaíso, Villa Alemana",
-        "ciudad": "Valparaíso",
-        "region": "Villa Alemana",
-        "telefono": "",
-        "instagram": null,
-        "email": null,
-        "web": "http://www.barberiastrongers.cl/",
-        "rating": "4.8",
-        "google_maps_url": "https://www.google.com/maps/place/Barberia+Strongers/@-33.0441868,-71.375518,17z/data=!3m1!4b1!4m6!3m5!1s0x9689d7429b54de63:0xc2b01c2cca4ac19!8m2!3d-33.0441868!4d-71.375518!16s%2Fg%2F11rqgw183d?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNi4wIKXMDSoASAFQAw%3D%3D",
-        "url_maps": "https://www.google.com/maps/place/Barberia+Strongers/@-33.0441868,-71.375518,17z/data=!3m1!4b1!4m6!3m5!1s0x9689d7429b54de63:0xc2b01c2cca4ac19!8m2!3d-33.0441868!4d-71.375518!16s%2Fg%2F11rqgw183d?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNi4wIKXMDSoASAFQAw%3D%3D"
       }
     ]
   }

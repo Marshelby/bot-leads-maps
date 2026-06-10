@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { openGmailLead } from '../lib/gmail';
 import { copyInstagramMessage, getInstagramUrl, openInstagramProfile } from '../lib/instagram';
-import { buildLeadContactId } from '../lib/leads';
+import { isLeadPersistedAsContacted } from '../lib/leads';
 import { fillWhatsAppTemplate, getWhatsAppReadyLeads, openWhatsAppLead } from '../lib/whatsapp';
 
 const CHANNELS = ['whatsapp', 'instagram', 'gmail'];
@@ -125,7 +125,7 @@ export default function CampaignModal({
       leadsWithMeta.forEach((lead) => {
         if (
           currentStatuses[lead.id] === 'contactado' ||
-          contactedLeadIds.has(buildLeadContactId(lead)) ||
+          isLeadPersistedAsContacted(contactedLeadIds, lead) ||
           lead.interaction?.last_contacted
         ) {
           nextStatuses[lead.id] = 'contactado';

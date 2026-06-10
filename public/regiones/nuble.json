@@ -1,11 +1,11 @@
 {
-  "Valparaíso": {
+  "Ñuble": {
     "Quilpué": [
       {
         "nombre": "Google Maps",
         "direccion": "Benjamin - Vicuña Mackenna 687, local 15, 2421481 Quilpué, Valparaíso",
         "ciudad": "Quilpué",
-        "region": "Valparaíso",
+        "region": "Ñuble",
         "telefono": "",
         "instagram": null,
         "email": null,
@@ -18,7 +18,7 @@
         "nombre": "Google Maps",
         "direccion": "Almte. Gomez Carreño 698, local 2, 2420719 Quilpué, Valparaíso",
         "ciudad": "Quilpué",
-        "region": "Valparaíso",
+        "region": "Ñuble",
         "telefono": "",
         "instagram": null,
         "email": null,
@@ -31,7 +31,7 @@
         "nombre": "Google Maps",
         "direccion": "Blanco Encalada 1087, 2430000 Quilpué, Valparaíso",
         "ciudad": "Quilpué",
-        "region": "Valparaíso",
+        "region": "Ñuble",
         "telefono": "",
         "instagram": "https://www.instagram.com/studio_.monkey",
         "email": null,
@@ -40,9 +40,7 @@
         "google_maps_url": "https://www.google.com/maps/place/Barberia+Monkey+II/@-33.0465255,-71.4376109,17z/data=!3m1!4b1!4m6!3m5!1s0x9689d91f9a5b9bc9:0x2b0d6ce99039665a!8m2!3d-33.0465255!4d-71.4376109!16s%2Fg%2F11y7h7kq_l?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D",
         "url_maps": "https://www.google.com/maps/place/Barberia+Monkey+II/@-33.0465255,-71.4376109,17z/data=!3m1!4b1!4m6!3m5!1s0x9689d91f9a5b9bc9:0x2b0d6ce99039665a!8m2!3d-33.0465255!4d-71.4376109!16s%2Fg%2F11y7h7kq_l?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
       }
-    ]
-  },
-  "Ñuble": {
+    ],
     "Ñuble": [
       {
         "nombre": "Google Maps",
@@ -100,6 +98,19 @@
       }
     ],
     "Chillán": [
+      {
+        "nombre": "Google Maps",
+        "direccion": "5 de Abril 336, 3820572 Chillán, Biobío",
+        "ciudad": "Chillán",
+        "region": "Ñuble",
+        "telefono": "",
+        "instagram": null,
+        "email": null,
+        "web": "",
+        "rating": "4.7",
+        "google_maps_url": "https://www.google.com/maps/place/World+Barber+Coffee/@-36.6046581,-72.100186,17z/data=!3m1!4b1!4m6!3m5!1s0x9668d77f6e36564f:0x48e7557fca3498fc!8m2!3d-36.6046581!4d-72.100186!16s%2Fg%2F11gzs7kl7p?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D",
+        "url_maps": "https://www.google.com/maps/place/World+Barber+Coffee/@-36.6046581,-72.100186,17z/data=!3m1!4b1!4m6!3m5!1s0x9668d77f6e36564f:0x48e7557fca3498fc!8m2!3d-36.6046581!4d-72.100186!16s%2Fg%2F11gzs7kl7p?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
+      },
       {
         "nombre": "Google Maps",
         "direccion": "Camino parque lantaño 805, 3280000 Chillán, Ñuble",
@@ -309,23 +320,6 @@
         "rating": "4.7",
         "google_maps_url": "https://www.google.com/maps/place/Vintage+Salon+De+Belleza+Y+Spa/@-36.4249718,-71.9596999,17z/data=!3m1!4b1!4m6!3m5!1s0x9668d33d7ed0d9ed:0xe079a1007c440fb7!8m2!3d-36.4249718!4d-71.9596999!16s%2Fg%2F11f6nh69j3?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D",
         "url_maps": "https://www.google.com/maps/place/Vintage+Salon+De+Belleza+Y+Spa/@-36.4249718,-71.9596999,17z/data=!3m1!4b1!4m6!3m5!1s0x9668d33d7ed0d9ed:0xe079a1007c440fb7!8m2!3d-36.4249718!4d-71.9596999!16s%2Fg%2F11f6nh69j3?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
-      }
-    ]
-  },
-  "Biobío": {
-    "Chillán": [
-      {
-        "nombre": "Google Maps",
-        "direccion": "5 de Abril 336, 3820572 Chillán, Biobío",
-        "ciudad": "Chillán",
-        "region": "Biobío",
-        "telefono": "",
-        "instagram": null,
-        "email": null,
-        "web": "",
-        "rating": "4.7",
-        "google_maps_url": "https://www.google.com/maps/place/World+Barber+Coffee/@-36.6046581,-72.100186,17z/data=!3m1!4b1!4m6!3m5!1s0x9668d77f6e36564f:0x48e7557fca3498fc!8m2!3d-36.6046581!4d-72.100186!16s%2Fg%2F11gzs7kl7p?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D",
-        "url_maps": "https://www.google.com/maps/place/World+Barber+Coffee/@-36.6046581,-72.100186,17z/data=!3m1!4b1!4m6!3m5!1s0x9668d77f6e36564f:0x48e7557fca3498fc!8m2!3d-36.6046581!4d-72.100186!16s%2Fg%2F11gzs7kl7p?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
       }
     ]
   }

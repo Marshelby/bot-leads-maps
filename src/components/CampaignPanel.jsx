@@ -1,5 +1,6 @@
 export default function CampaignPanel({
   selectedCount,
+  isGlobalReady = true,
   onOpen,
   onSelectAll,
   onSelectAllGlobal,
@@ -30,7 +31,12 @@ export default function CampaignPanel({
         <button className="button button-secondary" type="button" onClick={onSelectAll}>
           Seleccionar todos
         </button>
-        <button className="button button-secondary" type="button" onClick={onSelectAllGlobal}>
+        <button
+          className="button button-secondary"
+          type="button"
+          onClick={onSelectAllGlobal}
+          disabled={!isGlobalReady}
+        >
           Seleccionar TODOS (global)
         </button>
         <button className="button button-secondary" type="button" onClick={onClearSelection}>

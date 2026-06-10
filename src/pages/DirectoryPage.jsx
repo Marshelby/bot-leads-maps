@@ -4,7 +4,11 @@ import CampaignModal from '../components/CampaignModal';
 import CampaignPanel from '../components/CampaignPanel';
 import FilterBar from '../components/FilterBar';
 import InternalNav from '../components/InternalNav';
-import { buildLeadContactId, ensureLeadId } from '../lib/leads';
+import {
+  getLeadContactIdentityAliases,
+  ensureLeadId,
+  isLeadPersistedAsContacted,
+} from '../lib/leads';
 import { supabase } from '../lib/supabase';
 import { filterBusinesses, flattenBusinesses } from '../lib/data';
 
@@ -19,8 +23,10 @@ function buildRegionFileName(region) {
 
 export default function DirectoryPage() {
   const [allBusinesses, setAllBusinesses] = useState([]);
+  const [allNationalBusinesses, setAllNationalBusinesses] = useState([]);
   const [status, setStatus] = useState('loading');
   const [configStatus, setConfigStatus] = useState('loading');
+  const [nationalStatus, setNationalStatus] = useState('loading');
   const [contactedStatus, setContactedStatus] = useState('idle');
   const [contactedLeadIds, setContactedLeadIds] = useState(new Set());
   const [hideContacted, setHideContacted] = useState(false);
@@ -148,6 +154,51 @@ export default function DirectoryPage() {
   useEffect(() => {
     let cancelled = false;
 
+    async function loadNationalData() {
+      if (configStatus !== 'ready' || regiones.length === 0) {
+        return;
+      }
+
+      try {
+        const responses = await Promise.all(
+          regiones.map((regionName) => {
+            const regionFileName = buildRegionFileName(regionName);
+            return fetch(`/regiones/${regionFileName}.json`);
+          }),
+        );
+
+        const invalidResponse = responses.find((response) => !response.ok);
+        if (invalidResponse) {
+          throw new Error('No se pudo cargar el dataset nacional');
+        }
+
+        const datasets = await Promise.all(responses.map((response) => response.json()));
+        if (!cancelled) {
+          const nationalBusinesses = datasets.flatMap((dataset) =>
+            flattenBusinesses(dataset).map(ensureLeadId),
+          );
+          setAllNationalBusinesses(nationalBusinesses);
+          setNationalStatus('ready');
+        }
+      } catch (error) {
+        console.error('Error cargando dataset nacional:', error);
+        if (!cancelled) {
+          setAllNationalBusinesses([]);
+          setNationalStatus('error');
+        }
+      }
+    }
+
+    loadNationalData();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [configStatus, regiones]);
+
+  useEffect(() => {
+    let cancelled = false;
+
     async function loadCiudades() {
       if (!region) {
         setCiudades([]);
@@ -186,7 +237,7 @@ export default function DirectoryPage() {
   const visibleBusinesses = useMemo(
     () =>
       hideContacted
-        ? allBusinesses.filter((business) => !contactedLeadIds.has(buildLeadContactId(business)))
+        ? allBusinesses.filter((business) => !isLeadPersistedAsContacted(contactedLeadIds, business))
         : allBusinesses,
     [allBusinesses, contactedLeadIds, hideContacted],
   );
@@ -202,6 +253,27 @@ export default function DirectoryPage() {
         sortOrder,
       }),
     [city, minRating, niche, query, region, sortOrder, visibleBusinesses],
+  );
+
+  const visibleNationalBusinesses = useMemo(
+    () =>
+      hideContacted
+        ? allNationalBusinesses.filter((business) => !isLeadPersistedAsContacted(contactedLeadIds, business))
+        : allNationalBusinesses,
+    [allNationalBusinesses, contactedLeadIds, hideContacted],
+  );
+
+  const filteredNationalBusinesses = useMemo(
+    () =>
+      filterBusinesses(visibleNationalBusinesses, {
+        query,
+        city: '',
+        region: '',
+        niche,
+        minRating,
+        sortOrder,
+      }),
+    [minRating, niche, query, sortOrder, visibleNationalBusinesses],
   );
 
   const selectedLeadIds = useMemo(() => new Set(selectedLeads.map((lead) => lead.id)), [selectedLeads]);
@@ -245,16 +317,16 @@ export default function DirectoryPage() {
   }
 
   async function markLeadAsContacted(lead) {
-    const contactId = buildLeadContactId(lead);
+    const contactIdentities = getLeadContactIdentityAliases(lead);
 
     if (supabase) {
       const { error } = await supabase.from('leads_contactados').upsert(
-        {
+        contactIdentities.map((contactId) => ({
           id: contactId,
           nombre: String(lead?.nombre || '').trim(),
           direccion: String(lead?.direccion || '').trim(),
           telefono: String(lead?.telefono || '').trim(),
-        },
+        })),
         { onConflict: 'id' },
       );
 
@@ -265,7 +337,7 @@ export default function DirectoryPage() {
 
     setContactedLeadIds((currentIds) => {
       const nextIds = new Set(currentIds);
-      nextIds.add(contactId);
+      contactIdentities.forEach((contactId) => nextIds.add(contactId));
       return nextIds;
     });
   }
@@ -310,7 +382,7 @@ export default function DirectoryPage() {
   }
 
   function selectAllGlobal() {
-    const nextLeads = allBusinesses.map(ensureLeadId);
+    const nextLeads = filteredNationalBusinesses.map(ensureLeadId);
     setSelectedLeads(nextLeads);
 
     if (nextLeads[0]) {
@@ -461,6 +533,7 @@ export default function DirectoryPage() {
         <CampaignPanel
           className="campaign-panel--directory"
           selectedCount={selectedLeads.length}
+          isGlobalReady={nationalStatus === 'ready'}
           onOpen={openCampaign}
           onSelectAll={selectAllVisible}
           onSelectAllGlobal={selectAllGlobal}

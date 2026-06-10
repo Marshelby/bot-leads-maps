@@ -1,5 +1,5 @@
 import BusinessCard from './BusinessCard';
-import { buildLeadContactId } from '../lib/leads';
+import { isLeadPersistedAsContacted } from '../lib/leads';
 import { groupBusinessesByQuality } from '../lib/data';
 
 export default function BusinessGrid({
@@ -34,7 +34,7 @@ export default function BusinessGrid({
                 key={business.id}
                 business={business}
                 selected={selectedLeadIds.has(business.id)}
-                isContacted={contactedLeadIds.has(buildLeadContactId(business))}
+                isContacted={isLeadPersistedAsContacted(contactedLeadIds, business)}
                 onToggleSelect={onToggleSelect}
               />
             ))}

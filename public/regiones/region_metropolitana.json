@@ -147,6 +147,21 @@
         "url_maps": "https://www.google.com/maps/place/La+Florida+Barbershop/@-33.5424121,-70.5587528,17z/data=!3m1!4b1!4m6!3m5!1s0x9662d1f59d1160d9:0x1f98eca31f6b8a01!8m2!3d-33.5424121!4d-70.5587528!16s%2Fg%2F11s5t_qc2y?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
       }
     ],
+    "Florida": [
+      {
+        "nombre": "Google Maps",
+        "direccion": "Serafin Zamora 82 local 82 La Región Metropolitana CL, 8260181 Florida",
+        "ciudad": "Florida",
+        "region": "Región Metropolitana",
+        "telefono": "",
+        "instagram": null,
+        "email": null,
+        "web": "",
+        "rating": "4.5",
+        "google_maps_url": "https://www.google.com/maps/place/La+Barberia+La+Florida/@-33.5205826,-70.6000196,17z/data=!3m1!4b1!4m6!3m5!1s0x9662d1520a6d1c8b:0x4246bcceb5dc2a27!8m2!3d-33.5205826!4d-70.6000196!16s%2Fg%2F11gk8wv7dn?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D",
+        "url_maps": "https://www.google.com/maps/place/La+Barberia+La+Florida/@-33.5205826,-70.6000196,17z/data=!3m1!4b1!4m6!3m5!1s0x9662d1520a6d1c8b:0x4246bcceb5dc2a27!8m2!3d-33.5205826!4d-70.6000196!16s%2Fg%2F11gk8wv7dn?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
+      }
+    ],
     "Las Condes": [
       {
         "nombre": "Google Maps",
@@ -2306,23 +2321,6 @@
         "rating": "4.7",
         "google_maps_url": "https://www.google.com/maps/place/Olimpo+sal%C3%B3n/@-33.6145175,-70.6964591,17z/data=!3m1!4b1!4m6!3m5!1s0x9662d9b8f50d7bc1:0x5d7a07c123e18c91!8m2!3d-33.6145175!4d-70.6964591!16s%2Fg%2F11gmbxxpqv?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D",
         "url_maps": "https://www.google.com/maps/place/Olimpo+sal%C3%B3n/@-33.6145175,-70.6964591,17z/data=!3m1!4b1!4m6!3m5!1s0x9662d9b8f50d7bc1:0x5d7a07c123e18c91!8m2!3d-33.6145175!4d-70.6964591!16s%2Fg%2F11gmbxxpqv?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
-      }
-    ]
-  },
-  "Florida": {
-    "Florida": [
-      {
-        "nombre": "Google Maps",
-        "direccion": "Serafin Zamora 82 local 82 La Región Metropolitana CL, 8260181 Florida",
-        "ciudad": "Florida",
-        "region": "Florida",
-        "telefono": "",
-        "instagram": null,
-        "email": null,
-        "web": "",
-        "rating": "4.5",
-        "google_maps_url": "https://www.google.com/maps/place/La+Barberia+La+Florida/@-33.5205826,-70.6000196,17z/data=!3m1!4b1!4m6!3m5!1s0x9662d1520a6d1c8b:0x4246bcceb5dc2a27!8m2!3d-33.5205826!4d-70.6000196!16s%2Fg%2F11gk8wv7dn?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D",
-        "url_maps": "https://www.google.com/maps/place/La+Barberia+La+Florida/@-33.5205826,-70.6000196,17z/data=!3m1!4b1!4m6!3m5!1s0x9662d1520a6d1c8b:0x4246bcceb5dc2a27!8m2!3d-33.5205826!4d-70.6000196!16s%2Fg%2F11gk8wv7dn?authuser=0&hl=es-419&entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D"
       }
     ]
   }
